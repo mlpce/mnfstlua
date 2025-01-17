@@ -6,5 +6,5 @@
   <project name="mlpce/lua" path="lua" revision="mlpce" />
   <project name="mlpce/slinput" path="slinput" />
   <project name="mlpce/tosbindl" path="tosbindl" />
-  <project name="freemint/libcmini" path="libcmini" revision="master" />
+  <project name="freemint/libcmini" path="libcmini" revision="4146161b0324b9103021e631416a10ab340da08b" upstream="master" />
 </manifest>
