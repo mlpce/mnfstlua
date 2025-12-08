@@ -8,5 +8,5 @@
   <project name="mlpce/slinput" path="slinput" />
   <project name="mlpce/tosbindl" path="tosbindl" />
 
-  <project name="mlpce/libcmini" path="libcmini" revision="fix_strtod_mshort_mantissa_overflow" />
+  <project name="mlpce/libcmini" path="libcmini" revision="master" />
 </manifest>
