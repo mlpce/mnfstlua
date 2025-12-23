@@ -4,7 +4,7 @@
   <default remote="github-ssh" revision="main" sync-j="2" />
 
   <project name="mlpce/bldstlua" path="bldstlua" />
-  <project name="mlpce/lua" path="lua" revision="mlpce" />
+  <project name="mlpce/lua" path="lua" revision="mlpce_v5.5" />
   <project name="mlpce/slinput" path="slinput" />
   <project name="mlpce/tosbindl" path="tosbindl" />
 
