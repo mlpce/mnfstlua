@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote name="github-https" fetch="https://github.com" />
+  <default remote="github-https" revision="main" sync-j="2" />
+
+  <project name="mlpce/bldstlua" path="bldstlua" />
+  <project name="mlpce/lua" path="lua" revision="mlpce_v5.5" />
+  <project name="mlpce/slinput" path="slinput" />
+  <project name="mlpce/tosbindl" path="tosbindl" />
+
+  <project name="mlpce/libcmini" path="libcmini" revision="master" />
+</manifest>

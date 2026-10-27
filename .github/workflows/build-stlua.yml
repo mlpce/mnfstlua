@@ -1,0 +1,32 @@
+name: Build STLUA.ZIP
+run-name: ${{ github.actor }} build STLUA.ZIP
+on: [push, workflow_dispatch]
+jobs:
+  Build-stlua:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Triggered by ${{ github.event_name }} event."
+      - run: echo "Running on ${{ runner.os }}."
+      - run: echo "Repository ${{ github.repository }} branch ${{ github.ref }}."
+      - name: Install packages
+        run: |
+          sudo add-apt-repository ppa:vriviere/ppa
+          sudo apt-get update
+          sudo apt-get install repo cross-mint-essential
+      - name: Check compiler
+        run: m68k-atari-mint-gcc -v
+      - name: Clone repositories
+        run: |
+          mkdir ${{ github.workspace }}/project
+          cd ${{ github.workspace }}/project
+          repo init -u https://github.com/mlpce/mnfstlua.git -m default-https.xml
+          repo sync
+      - name: Build project
+        run: |
+          cd ${{ github.workspace }}/project/bldstlua/build
+          ./gccbld.sh
+          ./ziprel.sh
+      - name: Upload artefact
+        uses: actions/upload-artifact@v7
+        with:
+          path: ${{ github.workspace }}/project/bldstlua/build/8.3/STLUA.ZIP
