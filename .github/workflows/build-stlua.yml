@@ -3,16 +3,22 @@ run-name: ${{ github.actor }} build STLUA.ZIP
 on: [push, workflow_dispatch]
 jobs:
   Build-stlua:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - run: echo "Triggered by ${{ github.event_name }} event."
       - run: echo "Running on ${{ runner.os }}."
       - run: echo "Repository ${{ github.repository }} branch ${{ github.ref }}."
       - name: Install packages
         run: |
-          sudo add-apt-repository ppa:vriviere/ppa
+          sudo add-apt-repository -y ppa:vriviere/ppa
+          # Ubuntu 26.04 github runners set APT::Architecture-Variants
+          # "amd64v3", but the PPA only has amd64 packages for e.g.
+          # binutils-m68k-atari-mint. As the .sources file does not specify
+          # the supported architecture, Architectures: amd64 must be added
+          # so APT fetches the standard amd64 package index.
+          sudo sed -i '/^Components: main/a Architectures: amd64' /etc/apt/sources.list.d/vriviere-ubuntu-ppa-resolute.sources
           sudo apt-get update
-          sudo apt-get install repo cross-mint-essential
+          sudo apt-get install -y cross-mint-essential repo
       - name: Check compiler
         run: m68k-atari-mint-gcc -v
       - name: Clone repositories
